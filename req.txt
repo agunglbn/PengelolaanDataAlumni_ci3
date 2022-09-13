@@ -1,0 +1,190 @@
+  $data['user'] = $this->db->get_where('tbl_alumni', ['username' =>
+        $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Profile Alumni';
+        $this->load->library('form_validation');
+        $this->load->helper(array('form', 'url'));
+        $this->form_validation->set_rules('nama', 'nama', 'trim|required|max_length[128]');
+        $this->form_validation->set_rules(
+            'email',
+            'Email',
+            'trim|required|valid_email|max_length[128]|is_unique[tbl_alumni.email]',
+            array(
+                'required'      => 'Form Tidak Boleh Kosong %s.',
+                'is_unique'     => '%s ini telah digunakan.'
+            )
+        );
+        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|max_length[13]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|max_length[128]');
+        $this->form_validation->set_rules('ni', 'Nama Instansi', 'trim|required');
+        $this->form_validation->set_rules('tmsk', 'Tanggal masuk', 'trim|required|max_length[4]');
+        $this->form_validation->set_rules('tklr', 'Tanggal Keluar', 'trim|required|max_length[4]');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('dashbordAlum/header', $data);
+            $this->load->view('dashbordAlum/profile');
+            $this->load->view('dashbordAlum/footer');
+        } else {
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $nama = $this->input->post('nama'),
+                    $nisn = $this->input->post('nisn');
+            $nama = $this->input->post('nama');
+            $email = $this->input->post('email');
+            $mobile = $this->input->post('mobile');
+            $jk = $this->input->post('jenis_kelamin');
+            $ni = $this->input->post('nama_instansi');
+            $tmsk = $this->input->post('t_msk');
+            $tklr = $this->input->post('t_tmt');
+            $pekerjaan = $this->input->post('pekerjaan');
+            $alamat = $this->input->post('alamat');
+            $tgl_lahir = $this->input->post('date');
+            $username = $this->input->post('username');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ $data['user'] = $this->db->get_where('tbl_alumni', ['username' =>
+        $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Profile Alumni';
+        $this->load->library('form_validation');
+        $this->load->helper(array('form', 'url'));
+        $this->form_validation->set_rules('nama', 'nama', 'trim|required|max_length[128]');
+        $this->form_validation->set_rules(
+            'email',
+            'Email',
+            'trim|required|valid_email|max_length[128]|is_unique[tbl_alumni.email]',
+            array(
+                'required'      => 'Form Tidak Boleh Kosong %s.',
+                'is_unique'     => '%s ini telah digunakan.'
+            )
+        );
+        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|max_length[128]');
+        $this->form_validation->set_rules('ni', 'Nama Instansi', 'trim|required');
+        $this->form_validation->set_rules('tmsk', 'Tanggal masuk', 'trim|required|max_length[4]');
+        $this->form_validation->set_rules('tklr', 'Tanggal Keluar', 'trim|required|max_length[4]');
+        $this->form_validation->set_rules('pekerjaan', 'Status', 'trim|required');
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('dashbordAlum/header', $data);
+            $this->load->view('dashbordAlum/profile');
+            $this->load->view('dashbordAlum/footer');
+        } else {
+            $nisn = $this->input->post('nisn');
+            $nama = $this->input->post('nama');
+            $email = $this->input->post('email');
+            $mobile = $this->input->post('mobile');
+            $jk = $this->input->post('jenis_kelamin');
+            $ni = $this->input->post('nama_instansi');
+            $tmsk = $this->input->post('t_msk');
+            $tklr = $this->input->post('t_tmt');
+            $pekerjaan = $this->input->post('pekerjaan');
+            $alamat = $this->input->post('alamat');
+            $tgl_lahir = $this->input->post('date');
+            $username = $this->input->post('username');
+            //Cek Image
+            $upload_image = $_FILES['img']['name'];
+
+            if ($upload_image) {
+                $config['upload_path'] = 'assets/img/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = '2048';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('img')) {
+                    $old_img = $data['tbl_user']['img'];
+                    if ($old_img != '') {
+                        unlink(FCPATH . 'assets/img/' . $old_img);
+                    }
+                    $new_img = $this->upload->data('file_name');
+                    $this->db->set('img', $new_img);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+            $this->db->set('nama', $nama);
+            $this->db->where('username', $username);
+            $this->db->update('tbl_alumni');
+            redirect('profileAlumni');
+        }
+        //Form for adding user data
+
+
+
+//modal
+<?php
+    if (!empty($x)) {
+        $no = 1;
+        foreach ($x as $record) {
+    ?>
+
+    <div class="modal fade" id="exampleModal<?= $record->id_alumni; ?>" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aktivisasi Akun Alumni</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control required" id="status" name="status">
+
+                                        <option value="1"
+                                            <?php if ($record->status == "1") echo "selected='selected'" ?>>
+                                            Active
+                                        </option>
+                                        <option value="0"
+                                            <?php if ($record->status == "0") echo "selected='selected'" ?>>
+                                            Non Active
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <?php
+        }
+    }
+    ?>

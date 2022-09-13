@@ -1,0 +1,21 @@
+ 	$this->db->select('*');
+        $this->db->from('tbl_diskusi');
+        $this->db->join('tbl_alumni', 'tbl_alumni.id_alumni = tbl_diskusi.id_alumni', 'left');
+        $this->db->where('tbl_alumni.id_alumni');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+
+$this->db->select('*');
+        $this->db->join('tbl_alumni', 'tbl_alumni.id_alumni = tbl_diskusi.id_alumni', 'left');
+        $this->db->from('tbl_diskusi');
+        $query = $this->db->get();
+        if ($index_data != NULL) {
+            $this->db->where('tbl_alumni.id_alumni', $index_data);
+        }
+
+        $query = $this->db->get();
+        return $query->result();

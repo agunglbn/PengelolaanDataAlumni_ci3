@@ -1,0 +1,47 @@
+
+        $nama = $this->input->post('nama');
+        $nisn = $this->input->post('nisn');
+        $email = $this->input->post('email');
+        $mobile = $this->input->post('mobile');
+        $jenis_kelamin = $this->input->post('jk');
+        $angkatan_alumni = $this->input->post('angkatan');
+        $tahun_masuk = $this->input->post('tmsk');
+        $tahun_keluar = $this->input->post('tklr');
+        $pekerjaan = $this->input->post('pekerjaan');
+        $img = $_FILES['img'];
+
+        if ($img = '') {
+        } else {
+            $config['upload_path'] = '../assets/img';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']     = '2040';
+            $config['encrypt_name'] = true;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('img')) {
+                echo "Upload Gagal";
+                die();
+            } else {
+                $img = $this->upload->data('file_name');
+            }
+        }
+        $data = array(
+            'nama' => $nama,
+            'nisn' => $nisn,
+            'email' => $email,
+            'mobile' => $mobile,
+            'jenis_kelamin' => $jenis_kelamin,
+            'angkatan_alumni' => $angkatan_alumni,
+            'pekerjaan' => $pekerjaan,
+            'img' => $img,
+
+        );
+        $this->load->model('user_model');
+        $result = $this->user_model->addNewAlumni($data, 'tbl_alumni');
+        if ($result > 0) {
+            $this->session->set_flashdata('success', 'New Alumni created successfully');
+        } else {
+            $this->session->set_flashdata('error', 'User creation failed');
+        }
+
+        redirect('alumni');
+    }
