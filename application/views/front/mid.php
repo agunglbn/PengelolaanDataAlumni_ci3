@@ -281,7 +281,7 @@
      <!-- End Why Us Section -->
 
      <!-- ======= Portfolio Section ======= -->
-     <section id="portfolio" class="portfolio">
+     <!-- <section id="portfolio" class="portfolio">
          <div class="container">
 
              <div class="section-title">
@@ -462,9 +462,9 @@
              </div>
 
          </div>
-     </section><!-- End Portfolio Section -->
+     </section>End Portfolio Section -->
 
-     <!-- ======= Team Section ======= -->
+     <!-- ======= Team Section ======= -
      <section id="team" class="team">
          <div class="container">
 
@@ -565,6 +565,7 @@
      <!-- End Frequently Asked Questions Section -->
 
      <!-- ======= Contact Section ======= -->
+
      <section id="contact" class="contact">
          <div class="container">
 
@@ -648,7 +649,7 @@
 
                  <div class="col-lg-3 col-md-6">
                      <div class="footer-info">
-                         <h3>Groovin</h3>
+                         <h3>SMPN 25 Pekanbaru</h3>
                          <p>
                              Jl.Palaraya No.5, Sidomulyo Tim,<br>
                              Kec. Marpoyan Damai, Kota Pekanbaru, Riau<br><br>

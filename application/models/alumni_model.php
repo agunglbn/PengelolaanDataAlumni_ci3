@@ -73,4 +73,9 @@ class Alumni_model extends CI_Model
     {
         return $this->db->update($table, $data, $where);
     }
+    function update($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
 }

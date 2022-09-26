@@ -73,11 +73,10 @@ class Login extends CI_Controller
                     );
 
                     $this->session->set_userdata($sessionArray);
-
                     redirect('/dashboard');
                 }
             } else {
-                $this->session->set_flashdata('error', 'Email or password mismatch');
+                $this->session->set_flashdata('error', 'Email or password Wrong !!');
 
                 redirect('/login');
             }
@@ -332,15 +331,15 @@ class Login extends CI_Controller
                     $this->session->set_userdata($data);
                     redirect('dashboardAlum');
                 } else {
-                    $this->session->set_flashdata('error_msg', ' Error, Password Salah !!');
+                    $this->session->set_flashdata('error_msg', 'Password Salah !!');
                     redirect('viewAlumniLogin');
                 }
             } else {
-                $this->session->set_flashdata('error_msg', ' Error, Akun Tidak di Aktivisasi, Silahkan Hubungin Admin !!');
+                $this->session->set_flashdata('error_msg', 'Akun Tidak di Aktivisasi, Silahkan Hubungin Admin !!');
                 redirect('viewAlumniLogin');
             }
         } else {
-            $this->session->set_flashdata('error_msg', ' Error, Username Tidak Terdaftar !!');
+            $this->session->set_flashdata('error_msg', 'Username Tidak Terdaftar !!');
             redirect('viewAlumniLogin');
         }
     }

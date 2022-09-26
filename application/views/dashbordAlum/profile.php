@@ -205,8 +205,10 @@
                         <div class="form-group">
                             <label for="img">Gambar</label>
 
-                            <input type="file" class="form-control" id="img" name="img" value="<?= set_value('img') ?>"
-                                accept="image/*" required>
+                            <input type="file" class="form-control" id="img" name="img" accept="image/*"
+                                value="<?= set_value('img') ?>">
+
+
                         </div>
                     </div>
 

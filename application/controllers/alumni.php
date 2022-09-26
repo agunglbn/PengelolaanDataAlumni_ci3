@@ -149,7 +149,31 @@ class Alumni extends CI_Controller
                 }
             }
         }
+        if ($_FILES['img'] != null) {
+            $id = $this->input->post('id_alumni');
+            $data = array(
+                'username' => $this->input->post('username'),
+                'nama' => $this->input->post('nama'),
+                'mobile' => $this->input->post('mobile'),
+                'email' => $this->input->post('email'),
+                'nama_instansi' => $this->input->post('ni'),
+                't_msk' => $this->input->post('tmsk'),
+                't_tmt' => $this->input->post('tklr'),
+                'pekerjaan' => $this->input->post('pekerjaan'),
+                'jenis_kelamin' => $this->input->post('jk'),
+                'tgl_lahir' => $this->input->post('tgllahir'),
+                'alamat' => $this->input->post('alamat'),
+                'modified' => date("Y-m-d H:i:s"),
+            );
+
+            $this->db->where('id_alumni', $id);
+            $this->db->update('tbl_alumni', $data);
+            $this->session->set_flashdata('success_msg', 'Sukses Update Berita !!');
+            //Form for update berita
+            redirect('profileAlumni');
+        }
     }
+
 
     public function TambahBeritaAlumni()
     {

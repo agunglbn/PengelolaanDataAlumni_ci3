@@ -38,11 +38,11 @@
                             <div class="d-flex">
                                 <div class="w-100">
 
-                                    <?php
-                                    $this->load->helper('form');
-                                    $error = $this->session->flashdata('error_msg');
-                                    if ($error) {
-                                    ?>
+                                    <!-- <?php
+                                            $this->load->helper('form');
+                                            $error = $this->session->flashdata('error_msg');
+                                            if ($error) {
+                                            ?>
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -60,7 +60,7 @@
                                         </button>
                                         <?php echo $this->session->flashdata('success_msg'); ?>
                                     </div>
-                                    <?php } ?>
+                                    <?php } ?> -->
                                     <h3 class="mb-4">Sign In</h3>
                                 </div>
 
@@ -104,11 +104,24 @@
         </div>
     </section>
 
+
+
+    <script src="<?= base_url(); ?>assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/alumni/login/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/alumni/login/js/popper.js"></script>
     <script src="<?php echo base_url(); ?>assets/alumni/login/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/alumni/login/js/main.js"></script>
-
+    <script>
+    $(document).ready(function() {
+        <?php if ($this->session->flashdata('error_msg')) { ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error ... !!!',
+            text: '<?php echo $this->session->flashdata('error_msg'); ?>',
+        })
+        <?php } ?>
+    })
+    </script>
 </body>
 
 </html>
