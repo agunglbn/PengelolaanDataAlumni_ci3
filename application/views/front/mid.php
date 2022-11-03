@@ -84,9 +84,9 @@
      <section id="about" class="about">
          <div class="container">
 
-             <div class="row no-gutters">
-                 <div class="col-xl-6 d-flex align-items-stretch justify-content-center justify-content-lg-start">
-                     <div class="content d-flex flex-column justify-content-center">
+             <div class="row no-gutters ">
+                 <div class="col-xl-6 d-flex align-items-stretch justify-content-center justify-content-lg-start ">
+                     <div class="content d-flex flex-column justify-content-center mt-lg-5 ">
                          <h3>Visi SMPN 25 Pekanbaru</h3>
                          <div class="col-md icon-box">
                              <i class="bx bx-cube-alt"></i>
@@ -137,7 +137,7 @@
      <section id="NEWS" class="news">
          <div class="container">
              <div class="section-title" data-aos="fade-up">
-                 <h2>Berita Terbaru</h2>
+                 <h2>Berita Sekolah</h2>
                  <div class="row">
                      <?php foreach ($berita as $row) : ?>
                      <div class="col-md-4 mb-5 align-items-stretch" data-aos="fade-up">
@@ -151,8 +151,8 @@
                                      <div class="row">
                                          <div class="col-sm">
                                              <small>
-                                                 <p class="card-text"><small class="text-muted"><a
-                                                             href="tech-author.html" title=""><em>Dibuat Oleh :
+                                                 <p class="card-text"><small class="text-muted"><a href="#"><em>Dibuat
+                                                                 Oleh :
                                                                  <?php echo $row->name ?></em></a></small></p>
                                              </small>
                                          </div>
@@ -163,8 +163,8 @@
 
                                  <div class="read-more">
                                      <small>
-                                         <p class="card-text"><small class="text-muted"><a href="tech-author.html"
-                                                     title=""><em>Dibuat Pada :
+                                         <p class="card-text"><small class="text-muted"><a href="#" title=""><em>Dibuat
+                                                         Pada :
                                                          <?php echo $row->created ?></em></a></small></p>
                                      </small>
                                      <a href="<?php echo base_url() . 'DetailBeritaSekolah/' . $row->id; ?>"><i
@@ -571,11 +571,8 @@
 
              <div class="section-title">
                  <h2>Contact</h2>
-                 <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                     sint
-                     consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                     fugiat sit
-                     in iste officiis commodi quidem hic quas.</p>
+                 <!-- <p>.</p> -->
+                 <hr>
              </div>
 
              <div class="row contact-info">
@@ -583,8 +580,11 @@
                  <div class="col-md-4">
                      <div class="contact-address">
                          <i class="bi bi-geo-alt"></i>
-                         <h3>Address</h3>
-                         <address>Jl.Palaraya No.5, Sidomulyo Tim, Kec. Marpoyan Damai, Kota Pekanbaru, Riau 28289
+                         <a href="https://www.google.com/maps/place/SMP+Negeri+25+Pekanbaru/@0.442705,101.4354265,17z/data=!3m1!4b1!4m5!3m4!1s0x31d5af5653f67081:
+                       0xb8c7452d0e428383!8m2!3d0.4426996!4d101.4376152">
+                             <h3>Address</h3>
+                         </a>
+                         <address>Jl. Kartama, Maharatu, Kec. Marpoyan Damai, Kota Pekanbaru, Riau 96010
                          </address>
                      </div>
                  </div>
@@ -601,12 +601,12 @@
                      <div class="contact-email">
                          <i class="bi bi-envelope"></i>
                          <h3>Email</h3>
-                         <p><a href="mailto:info@example.com">info@example.com</a></p>
+                         <p><a href="mailto:smpnn25pekanbaru.sch.id">smpnn25pekanbaru.sch.id</a></p>
                      </div>
                  </div>
 
              </div>
-
+             <!-- 
              <div class="form">
                  <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                      <div class="row">
@@ -634,7 +634,7 @@
                      </div>
                      <div class="text-center"><button type="submit">Send Message</button></div>
                  </form>
-             </div>
+             </div> -->
 
          </div>
      </section><!-- End Contact Section -->
@@ -651,9 +651,10 @@
                      <div class="footer-info">
                          <h3>SMPN 25 Pekanbaru</h3>
                          <p>
-                             Jl.Palaraya No.5, Sidomulyo Tim,<br>
+
+                             Jl. Kartama, Maharatu,<br>
                              Kec. Marpoyan Damai, Kota Pekanbaru, Riau<br><br>
-                             Kode Pos 28289,<br><br>
+                             Riau 96010,<br><br>
                              <strong>Phone:</strong> +1 5589 55488 55<br>
                              <strong>Email:</strong> info@example.com<br>
                          </p>

@@ -587,15 +587,19 @@ class User extends BaseController
 
     function EditBeritaSekolah($id)
     {
+        $this->load->library('form_validation');
+        $this->load->helper(array('form', 'url'));
         $this->form_validation->set_rules('judul', 'Judul Berita', 'trim|required|max_length[128]');
         $this->form_validation->set_rules('kategori', 'Kateori Berita', 'required|trim');
         $this->form_validation->set_rules('isi', 'Isi Berita', 'trim|required');
+
         if ($this->form_validation->run() == false) {
             $this->global['pageTitle'] = 'CodeInsect : Edit Berita Sekolah';
             $data['kategori'] = $this->user_model->get_data_kategori();
             $data['detail'] = $this->user_model->detailberitasekolah($id);
             $this->loadViews("alumni/v_editBerita", $this->global, $data, NULL);
         } else {
+
             $this->load->library('upload');
             $path = 'assets/img-berita/';
             $config['upload_path'] = 'assets/img-berita/';
@@ -628,9 +632,10 @@ class User extends BaseController
                         'judul' => $this->input->post('judul'),
                         'kategori' => $this->input->post('kategori'),
                         'isi' => $this->input->post('isi'),
-                        'img' => $img['file_name'],
                         'modified' => date("Y-M-d H:i:s"),
+                        'img' => $img['file_name'],
                     );
+
                     @unlink($path, $gambar_lama);
                     $this->db->where('id', $id);
                     $this->db->update('tbl_berita', $data);
@@ -638,6 +643,25 @@ class User extends BaseController
                     //Form for update berita
                     redirect('beritasekolah');
                 }
+            }
+
+            if ($_FILES['img'] != null) {
+                $id = $this->input->post('id');
+                $data = array(
+                    'userId' => $this->input->post('userId'),
+                    'name' => $this->input->post('name'),
+                    'judul' => $this->input->post('judul'),
+                    'kategori' => $this->input->post('kategori'),
+                    'isi' => $this->input->post('isi'),
+                    'modified' => date("Y-M-d H:i:s"),
+                );
+
+                @unlink($path, $gambar_lama);
+                $this->db->where('id', $id);
+                $this->db->update('tbl_berita', $data);
+                $this->session->set_flashdata('success_msg', 'Sukses Update Berita !!');
+                //Form for update berita
+                redirect('beritasekolah');
             }
         }
     }

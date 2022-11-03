@@ -341,10 +341,16 @@ class User_model extends CI_Model
         $this->db->insert($table, $data);
     }
 
+    // Berita Sekolah 
+
     function getBeritaSekolah()
     {
         $hsl = $this->db->get("tbl_berita");
         return $hsl;
+    }
+    function editberitasekolah($table, $data, $where)
+    {
+        return $this->db->update($table, $data, $where);
     }
     function detailberitasekolah($id = null)
     {

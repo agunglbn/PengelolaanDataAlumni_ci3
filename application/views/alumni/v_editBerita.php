@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Tambah Berita Alumni
+            Berita Sekolah
             <small></small>
         </h1>
         <ol class="breadcrumb">
@@ -40,7 +40,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">Edit Berita
-                            <small>Advanced and full of features</small>
+                            <small></small>
                         </h3>
                         <!-- tools box -->
                         <div class="pull-right box-tools">
@@ -99,10 +99,10 @@
                                     <div class="form-group">
                                         <label for="img">Gambar</label>
                                         <input type="hidden" class="form-control" id="new_img" name="new_img"
-                                            value="<?php echo $detail->img ?>" accept="image/*" required>
+                                            value="<?php echo $detail->img ?>" accept="image/*">
 
                                         <input type="file" class="form-control" id="img" name="img"
-                                            value="<?= set_value('img') ?>" accept="image/*" required>
+                                            value="<?= set_value('img') ?>" accept="image/*">
                                     </div>
                                 </div>
 

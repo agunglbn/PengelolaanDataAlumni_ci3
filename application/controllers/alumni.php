@@ -168,7 +168,7 @@ class Alumni extends CI_Controller
 
             $this->db->where('id_alumni', $id);
             $this->db->update('tbl_alumni', $data);
-            $this->session->set_flashdata('success_msg', 'Sukses Update Berita !!');
+            $this->session->set_flashdata('success_msg', 'Sukses Update Profil !!');
             //Form for update berita
             redirect('profileAlumni');
         }

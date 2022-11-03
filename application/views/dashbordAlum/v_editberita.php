@@ -40,7 +40,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">Edit Berita
-                            <small>Advanced and full of features</small>
+                            <small>Perubahan Data</small>
                         </h3>
                         <!-- tools box -->
                         <div class="pull-right box-tools">

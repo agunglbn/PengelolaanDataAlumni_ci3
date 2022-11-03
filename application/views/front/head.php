@@ -53,9 +53,9 @@
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#NEWS">NEWS</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+                    <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
                     <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <li><a class="nav-link scrollto" href="#">Visi Misi</a></li>
+                    <li><a class="nav-link scrollto" href="#">Visi Misi</a></li> -->
 
 
 
