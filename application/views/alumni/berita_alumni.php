@@ -30,9 +30,11 @@
         </div>
         <?php } ?>
 
+
+
         <div class="row">
             <div class="col-xs-12 text-right">
-
+                <!--  -->
             </div>
         </div>
         <div class="row">
@@ -195,7 +197,7 @@
 
                                         <a class="btn btn-sm btn-danger" href="#modalDelete"
                                             onclick="$('#modalDelete #formDelete')
-                                        .attr('action','<?php echo base_url() . 'deleteBeritaAlumni/' . $record->id; ?>')" data-toggle="modal"><i
+                                        .attr('action','<?php echo base_url() . 'DeleteBeritaAlumni/' . $record->id; ?>')" data-toggle="modal"><i
                                                 class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>

@@ -49,7 +49,7 @@ class User_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->where('BaseTbl.roleId =', 1);
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 
@@ -210,11 +210,7 @@ class User_model extends CI_Model
 
         return $this->db->affected_rows();
     }
-    function get_alumni()
-    {
-        $hsl = $this->db->get("tbl_alumni");
-        return $hsl;
-    }
+
     public function current_user()
     {
 
@@ -226,12 +222,39 @@ class User_model extends CI_Model
         return $query->row();
     }
 
+
+    //COUNT DATA DASHBORD
+
+    function countAlumni()
+    {
+        return $this->db->count_all("tbl_alumni");
+    }
+    function countBeritaAlumni()
+    {
+        $query = $this->db->query('SELECT * FROM tbl_diskusi WHERE status= "0"');
+        $count = $query->num_rows();
+        return $count;
+    }
+    function countBeritaSekolah()
+    {
+        return $this->db->count_all("tbl_berita");
+    }
+
+
+    // END
+    // Data Alumni
     function addNewAlumni($data)
     {
 
         return $this->db->insert('tbl_alumni', $data);
     }
 
+    function get_alumni()
+    {
+        $hsl = $this->db->get("tbl_alumni");
+        return $hsl;
+    }
+    // Tambah Data Alumni
     public function insert($data)
     {
         if (!array_key_exists("created", $data)) {
@@ -245,7 +268,11 @@ class User_model extends CI_Model
             return false;
         }
     }
-
+    // Nambah Alumni Menggunakan Excel
+    function fetch_data($record)
+    {
+        $this->db->insert_batch($this->_table, $record);
+    }
 
     function editAlumni($data, $id_alumni)
     {
@@ -312,6 +339,12 @@ class User_model extends CI_Model
         return $query;
     }
 
+    // Delete Berita Alumni 
+    function deleteBeritaAlumni($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tbl_diskusi');
+    }
     function detailKategori()
     {
         $hsl = $this->db->get("tbl_kategori");
@@ -369,25 +402,7 @@ class User_model extends CI_Model
         $this->db->update('tbl_berita', $data);
     }
 
-    //COUNT DATA DASHBORD
 
-    function countAlumni()
-    {
-        return $this->db->count_all("tbl_alumni");
-    }
-    function countBeritaAlumni()
-    {
-        $query = $this->db->query('SELECT * FROM tbl_diskusi WHERE status= "0"');
-        $count = $query->num_rows();
-        return $count;
-    }
-    function countBeritaSekolah()
-    {
-        return $this->db->count_all("tbl_berita");
-    }
-
-
-    // END
 
     // Kategori Berita Sekolah
     function detailKategoriSekolah()
@@ -420,4 +435,17 @@ class User_model extends CI_Model
         return $query->result();
     }
     // END
+
+    // Modal Guru
+
+    // Tampil Data Guru 
+    function getGuru($id = null)
+    {
+        $hsl = $this->db->get("pegawai");
+        return $hsl;
+    }
+
+    function addGuru(){
+        
+    }
 }

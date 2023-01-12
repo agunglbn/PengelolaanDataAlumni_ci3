@@ -71,9 +71,12 @@ $route['detailProfilAlumni/(:num)'] = 'alumni/detailProfilAlumni/$1';
 /*********** END *******************/
 
 
-/***********  Alumni Controler User *******************/
+// /***********  Alumni Controler User *******************/
+// $route['tes'] = 'user/tes';
 $route['alumni'] = 'user/alumni';
 $route['tambah_alumni'] = "user/tambah_alumni";
+$route['import_excel'] = "user/import_excel";
+$route['cetak_pdf'] = "user/cetakpdf";
 $route['newAlumni'] = "user/newAlumni";
 $route['detailAlum/(:num)'] = "user/detailAlum/$1";
 $route['deleteAlumni/(:any)'] = "user/deleteAlumni/$1";
@@ -82,6 +85,7 @@ $route['prosesupdate'] = 'user/prosesupdate';
 $route['BeritaAlumni'] = 'user/BeritaAlumni';
 $route['updateStatusBerita'] = "user/updateStatusBerita";
 $route['DetailDataBeritaAlumni/(:num)'] = "user/DetailDataBeritaAlumni/$1";
+$route['DeleteBeritaAlumni/(:any)'] = 'user/DeleteBeritaAlumni/$1';
 $route['KategoriBeritaAlumni'] = 'user/KategoriBeritaAlumni';
 $route['deleteKategoriAlumni/(:any)'] = 'user/deleteKategoriAlumni/$1';
 $route['TambahKategori'] = 'user/TambahKategori';
@@ -94,6 +98,7 @@ $route['StatusBeritaSekolah'] = "user/StatusBeritaSekolah";
 $route['KategoriBeritaSekolah'] = 'user/KategoriBeritaSekolah';
 $route['deleteKategoriSekolah/(:any)'] = 'user/deleteKategoriSekolah/$1';
 $route['TambahKategoriSekolah'] = 'user/TambahKategoriSekolah';
+$route['guru'] = 'user/guru';
 /*********** END *******************/
 
 

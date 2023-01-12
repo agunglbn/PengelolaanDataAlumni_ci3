@@ -21,6 +21,8 @@
     <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <!---DATA TABLE-->
     <link href="<?php echo base_url(); ?>assets/dataTables/datatables.min.css" rel="stylesheet" />
+    <!-- SELECT -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
 
     <style>
     .error {

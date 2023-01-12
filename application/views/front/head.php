@@ -44,7 +44,9 @@
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h7 class="logo"> <img src="assets/img/" alt=""><a href="index.html">SMPN 25 Pekanbaru</a></h7>
+            <h7 class="logo "> <img src="<?php echo base_url() ?>assets/front/assets/img/favicon.jpg" alt=""><a
+                    href="<?php echo base_url() ?>front"> SMPN 25
+                    Pekanbaru</a></h7>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

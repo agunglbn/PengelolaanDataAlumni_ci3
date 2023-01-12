@@ -52,8 +52,9 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session');
+$autoload['libraries'] = array('database', 'session', 'excel');
 
+$autoload['drivers'] = array();
 
 /*
 | -------------------------------------------------------------------
@@ -65,7 +66,7 @@ $autoload['libraries'] = array('database', 'session');
 */
 
 $autoload['helper'] = array('url', 'file', 'cias_helper', 'security', 'form');
-
+$config['composer_autoload'] = "vendor/autoload.php";
 
 /*
 | -------------------------------------------------------------------

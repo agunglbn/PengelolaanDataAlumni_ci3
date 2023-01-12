@@ -11,9 +11,8 @@ class Front_model extends CI_Model
         $this->db->limit(5);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return  $data = $query->result();
         }
-        return $data;
     }
     public function beritaAlumniSide()
     {
@@ -24,9 +23,8 @@ class Front_model extends CI_Model
         $this->db->limit(6);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return $data = $query->result();
         }
-        return $data;
     }
     public function getAllBeritaAlumni($limit, $start)
     {
@@ -38,9 +36,8 @@ class Front_model extends CI_Model
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return  $data = $query->result();
         }
-        return $data;
     }
     public function countAllBeritaAlumni()
     {
@@ -65,12 +62,11 @@ class Front_model extends CI_Model
         $this->db->from('tbl_berita');
         $this->db->where('status', '1');
         $this->db->order_by('created', 'DESC');
-        $this->db->limit(4);
+        $this->db->limit(6);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return $data = $query->result();
         }
-        return $data;
     }
 
     public function beritasekolahSide()
@@ -82,9 +78,8 @@ class Front_model extends CI_Model
         $this->db->limit(6);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return $data = $query->result();
         }
-        return $data;
     }
     public function getAllBeritaSekolah($limit, $start)
     {
@@ -95,9 +90,8 @@ class Front_model extends CI_Model
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            $data = $query->result();
+            return $data = $query->result();
         }
-        return $data;
     }
     public function countAllBeritaSekolah()
     {

@@ -49,7 +49,7 @@
                                         </button>
                                         <?php echo $this->session->flashdata('error_msg'); ?>
                                     </div>
-                                    <?php } ?>
+                                    <?php } ?> -->
                                     <?php
                                     $success = $this->session->flashdata('success_msg');
                                     if ($success) {
@@ -60,7 +60,7 @@
                                         </button>
                                         <?php echo $this->session->flashdata('success_msg'); ?>
                                     </div>
-                                    <?php } ?> -->
+                                    <?php } ?>
                                     <h3 class="mb-4">Sign In</h3>
                                 </div>
 
@@ -92,7 +92,7 @@
                                         </label>
                                     </div>
                                     <div class="w-50 text-md-right">
-                                        <a href="#">Forgot Password</a>
+                                        <a href="<?php echo base_url() ?>regisAlumni">Registrasi Alumni</a>
                                     </div>
 
                                 </div>

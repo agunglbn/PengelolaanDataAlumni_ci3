@@ -14,8 +14,6 @@
             <div class="col-md-8">
                 <!-- general form elements -->
 
-
-
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Enter User Details</h3>

@@ -1,11 +1,10 @@
-<!-- CONTROLLER USER -->
-
+<!-- LIST BERITA ALUMNI DASHBORD ADMIN DAN USER -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> User Management
-            <small>Profile</small>
+            <i class="fa fa-users"></i> Data Alumni
+            <small>List Data Alumni</small>
         </h1>
     </section>
 
@@ -31,22 +30,32 @@
         </div>
         <?php } ?>
 
+
+
         <div class="row">
             <div class="col-xs-12 text-right">
-
-                <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>tambah_alumni"><i class="fa fa-plus"></i>
-                        Add New</a>
-                </div>
+                <!--  -->
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>tambah_alumni"><i class="fa fa-plus"></i>
+                    Add New</a>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
+
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Alumni List</h3>
 
+                        <h3 class="box-title">List Alumni</h3>
+                        <div class="col-xs-12 text-right">
+                            <!--  -->
+                            <a class="btn btn-primary" href="<?php echo base_url(); ?>cetak_pdf"><i
+                                    class="fa fa-file"></i>
+                                Cetak PDF</a>
+                        </div>
                     </div><!-- /.box-header -->
+                    <div class="row">
+
+                    </div>
                     <div class="box-body table-responsive no-padding">
                         <table id="datatables" class="table table-bordered table-striped">
                             <thead>
@@ -62,10 +71,10 @@
                                     <th class="text-center">Tahun Masuk</th>
                                     <th class="text-center">Tahun Tamat</th>
                                     <th class="text-center">Pekerjaan</th>
+                                    <th class="text-center">Prestasi</th>
                                     <th class="text-center">Nama Instansi</th>
                                     <th class=" text-center">Status</th>
-                                    <th width="100px" class="text-center">Actions</th>
-
+                                    <th class=" text-center">Action</th>
 
                                 </tr>
                             </thead>
@@ -87,8 +96,11 @@
                                     <td><?php echo $record->t_msk ?></td>
                                     <td><?php echo $record->t_tmt ?></td>
                                     <td><?php echo $record->pekerjaan ?></td>
+                                    <td><?php echo substr($record->prestasi, 0, 10) ?></td>
                                     <td><?php echo $record->nama_instansi ?></td>
                                     <td>
+
+                                        <!-- Proses Update Status  -->
                                         <?php
                                                 $status = $record->status;
                                                 if ($status == 0) {
@@ -208,11 +220,21 @@
 
 
                                     </td>
+                                    <!-- End Update Status Modal -->
 
-                                    <td width="10px">
-                                        <!--  <a class="btn btn-sm btn-info"
-                                            href="<?php echo base_url() . 'prosesupdate' ?>"><i
-                                                class=" fa fa-pencil"></i></a>-->
+
+                                    <td width="150px">
+                                        <!-- Detail Alumni -->
+                                        <a class="btn btn-sm btn-success"
+                                            href="<?php echo base_url() . 'detailAlum/' . $record->id_alumni ?>"><i
+                                                class=" fa fa-search-plus"></i></a>
+
+                                        <!-- Delete Alumni -->
+                                        <a class="btn btn-sm btn-danger" href="#modalDelete"
+                                            onclick="$('#modalDelete #formDelete')
+                                        .attr('action','<?php echo base_url() . 'deleteAlumni/' . $record->id_alumni; ?>')" data-toggle="modal"><i
+                                                class="fa fa-trash"></i></a>
+
 
                                         <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
                                             data-target="#exampleModal<?= $record->id_alumni; ?>"
@@ -241,7 +263,8 @@
                                                                         <input type="hidden" name="id_alumni"
                                                                             value="<?= $record->id_alumni; ?>" />
                                                                         <input type="password" class="form-control"
-                                                                            name="password" id="password">
+                                                                            name="password" placeholder="*******"
+                                                                            id="password">
                                                                     </div>
                                                                     <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                                                 </div>
@@ -250,8 +273,9 @@
                                                                         <label for="recipient-name"
                                                                             class="control-label">Confirm
                                                                             Password:</label>
-                                                                        <input type="password" class="form-control"
-                                                                            name="password2" id="password2">
+                                                                        <input type="password" placeholder="*******"
+                                                                            class="form-control" name="password2"
+                                                                            id="password2">
                                                                     </div>
                                                                     <?php echo form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                                                                 </div>
@@ -269,17 +293,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <a class="btn btn-sm btn-success"
-                                            href="<?php echo base_url() . 'detailAlum/' . $record->id_alumni ?>"><i
-                                                class=" fa fa-search-plus"></i></a>
-
-                                        <a class="btn btn-sm btn-danger" href="#modalDelete"
-                                            onclick="$('#modalDelete #formDelete')
-                                        .attr('action','<?php echo base_url() . 'deleteAlumni/' . $record->id_alumni; ?>')" data-toggle="modal"><i
-                                                class="fa fa-trash"></i></a>
-
-
                                     </td>
                                 </tr>
                                 <?php
@@ -293,30 +306,25 @@
                 </div><!-- /.box -->
             </div>
         </div>
-
-
-        <!--MODAL DELETE-->
-        <div class="modal fade" id="modalDelete">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-footer">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Yakin akan menghapus Data</h4>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <form id="formDelete" accept="" method="POST">
-                                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary" type="submit">OK</button>
-                            </form>
-                        </center>
-                    </div>
+    </section>
+    <div class="modal fade" id="modalDelete">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-footer">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Yakin akan menghapus Data</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <form id="formDelete" accept="" method="POST">
+                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">OK</button>
+                        </form>
+                    </center>
                 </div>
             </div>
         </div>
-
-
-
+    </div>
 
 </div>

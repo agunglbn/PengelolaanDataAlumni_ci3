@@ -26,7 +26,9 @@
                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                             <div class="page-wrapper">
                                 <div class="blog-list clearfix">
-                                    <?php foreach ($berita as $row) : ?>
+                                    <?php
+                                    if (!empty($berita)) {
+                                        foreach ($berita as $row) { ?>
                                     <div class="blog-box row">
                                         <div class="col-md-4">
                                             <div class="post-media">
@@ -55,7 +57,8 @@
 
                                     <hr class="invis">
 
-                                    <?php endforeach ?>
+                                    <?php }
+                                    } ?>
                                 </div><!-- end blog-list -->
                             </div><!-- end page-wrapper -->
 
@@ -190,7 +193,9 @@
                                     </a>
                                     <div class="blog-list-widget">
                                         <div class="list-group">
-                                            <?php foreach ($alumni as $row) : ?>
+                                            <?php
+                                            if (!empty($alumni)) {
+                                                foreach ($alumni as $row) { ?>
                                             <a href="<?php echo base_url() . 'DetailBeritaAlumni/' . $row->id; ?>"
                                                 class="list-group-item list-group-item-action flex-column align-items-start">
                                                 <div class="w-100 justify-content-between">
@@ -201,7 +206,8 @@
                                                     <small><?php echo $row->created ?></small>
                                                 </div>
                                             </a>
-                                            <?php endforeach ?>
+                                            <?php }
+                                            } ?>
 
                                         </div>
                                     </div><!-- end blog-list -->

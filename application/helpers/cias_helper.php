@@ -1,6 +1,23 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
 
+function generatePdf($html = '', $filename = 'Document', $size = 'A4', $orientation = 'landscape', $attchment = false)
+{
 
+    // instantiate and use the dompdf class
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($html);
+
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper($size, $orientation);
+
+    // Render the HTML as PDF
+    $dompdf->render();
+
+    // Output the generated PDF to Browser
+    $dompdf->stream($filename, ['Attchment' => $attchment]);
+}
 /**
  * This function is used to print the content of any data
  */

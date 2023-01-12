@@ -219,81 +219,93 @@ class Login extends CI_Controller
     }
     public function tampilRegister()
     {
-        $this->load->view('alumni/register_alumni');
+        $this->load->view('alumni/regis_alumni');
     }
     function regisAlumni()
     {
         $this->load->library('form_validation');
         $this->load->helper(array('form', 'url'));
-        $this->form_validation->set_rules('nisn', 'nisn', 'trim|required|max_length[13]');
-        $this->form_validation->set_rules('nama', 'nama', 'trim|required|max_length[128]');
         $this->form_validation->set_rules(
-            'email',
-            'Email',
-            'trim|required|valid_email|max_length[128]|is_unique[tbl_alumni.email]',
+            'nisn',
+            'NISN',
+            'trim|required|min_length[15]|max_length[15]',
             array(
-                'required'      => 'Form Tidak Boleh Kosong %s.',
-                'is_unique'     => '%s ini telah digunakan.'
+                'required'      => '%s Tidak Boleh Kosong',
+                'min_length' => '%s 15 Karakter'
             )
         );
-        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
-        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|max_length[128]');
-        $this->form_validation->set_rules('ni', 'Nama Instansi', 'trim|required');
-        $this->form_validation->set_rules('tmsk', 'Tanggal masuk', 'trim|required|max_length[4]');
-        $this->form_validation->set_rules('tklr', 'Tanggal Keluar', 'trim|required|max_length[4]');
-        $this->form_validation->set_rules('pekerjaan', 'Status', 'trim|required');
+        // $this->form_validation->set_rules('nama', 'nama', 'trim|required|max_length[128]');
+        // $this->form_validation->set_rules(
+        //     'email',
+        //     'Email',
+        //     'trim|required|valid_email|max_length[128]|is_unique[tbl_alumni.email]',
+        //     array(
+        //         'required'      => 'Form Tidak Boleh Kosong %s.',
+        //         'is_unique'     => '%s ini telah digunakan.'
+        //     )
+        // );
+        // $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+        // $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]');
+        // $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|max_length[128]');
+        // $this->form_validation->set_rules('ni', 'Nama Instansi', 'trim|required');
+        // $this->form_validation->set_rules('tmsk', 'Tanggal masuk', 'trim|required|max_length[4]');
+        // $this->form_validation->set_rules('tklr', 'Tanggal Keluar', 'trim|required|max_length[4]');
+        // $this->form_validation->set_rules('pekerjaan', 'Status', 'trim|required');
         $this->form_validation->set_rules(
             'username',
             'Username',
-            'required|min_length[3]|max_length[15]|is_unique[tbl_alumni.username]',
+            'required|min_length[5]|max_length[15]|is_unique[tbl_alumni.username]',
             array(
-                'required'      => 'You have not provided %s.',
-                'is_unique'     => '%s ini telah digunakan.'
+                'required'      => '%s Tidak Boleh Kosong',
+                'min_length'     => 'Minimal %s 3 Karakter.',
+                'max_length' => 'Minimal %s 15 Karakter'
             )
         );
         $this->form_validation->set_rules(
             'password',
             'Password',
-            'trim|required|min_length[5]'
+            'trim|required|min_length[5]',
+            array(
+                'required'      => '%s Tidak Boleh Kosong',
+                'min_length'     => 'Minimal %s 5 Karakter.'
+            )
         );
+        $this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
 
 
         if ($this->form_validation->run() == false) {
 
             $this->tampilRegister();
         } else {
+            $answer = $this->input->post('nama_pegawai');
+            $pegawai = $this->db->get_where('pegawai', ['nama_pegawai' => $answer])->row_array();
             //Prepare array of user data
-            $data = array(
-                'nama' => $this->input->post('nama'),
-                'nisn' => $this->input->post('nisn'),
-                'email' => $this->input->post('email'),
-                'mobile' => $this->input->post('mobile'),
-                'jenis_kelamin' => $this->input->post('jk'),
-                'nama_instansi' => $this->input->post('ni'),
-                't_msk' => $this->input->post('tmsk'),
-                't_tmt' => $this->input->post('tklr'),
-                'pekerjaan' => $this->input->post('pekerjaan'),
-                'alamat' => $this->input->post('alamat'),
-                'tgl_lahir' => $this->input->post('date'),
-                'username' => $this->input->post('username'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'img' => 'default.jpg'
-            );
+            if ($pegawai) {
+                $data = array(
+                    'nisn' => $this->input->post('nisn'),
+                    'username' => $this->input->post('username'),
+                    'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                    'img' => 'default.jpg'
+                );
 
-            //Pass user data to model
-            $insertUserData = $this->login_model->regisAlumni($data);
+                //Pass user data to model
+                $insertUserData = $this->login_model->regisAlumni($data);
 
-            //Alert Ketika Proses
-            if ($insertUserData) {
-                $this->session->set_flashdata('success_msg', 'Sukses Register Akun !!');
+                //Alert Ketika Proses
+                if ($insertUserData) {
+                    $this->session->set_flashdata('success_msg', 'Sukses Register Akun !!');
+                } else {
+                    $this->session->set_flashdata('error_msg', ' Error, Kesalahan Register Akun!!');
+                }
+
+
+                //Form Ketika di tambahkan
+                $this->viewAlumniLogin();
             } else {
-                $this->session->set_flashdata('error_msg', ' Error, Kesalahan Register Akun!!');
+
+                $this->session->set_flashdata('error_msg', ' Error, Nama Pegawai Tidak Ditemukan !!');
+                $this->tampilRegister();
             }
-
-
-            //Form Ketika di tambahkan
-            $this->viewAlumniLogin();
         }
     }
 
@@ -309,6 +321,8 @@ class Login extends CI_Controller
             $this->_login();
         }
     }
+
+
 
     private function _login()
     {

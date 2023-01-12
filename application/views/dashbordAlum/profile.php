@@ -1,6 +1,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js?>"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script> -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -99,7 +100,7 @@
                         <?php echo form_error('mobile', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="col-md-6">
-                        <label for="Nama">Pekerjaan </label>
+                        <label for="Nama">Gender </label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"
                                     aria-hidden="true"></i></span>
@@ -171,7 +172,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="Nama">Pekerjaan </label>
+                        <label for="Nama">Status </label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-briefcase"
                                     aria-hidden="true"></i></span>
@@ -191,7 +192,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="Nama">Nama Instansi</label>
+                        <label for="Nama">Tempat Bekerja</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-building"></i></span>
                             <input type="text" name="ni" id="ni" value="<?= $user['nama_instansi'] ?>"
@@ -203,17 +204,45 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="img">Gambar</label>
+                            <label>Prestasi</label>
+                            <textarea name="prestasi" class="form-control" rows="4" value=""
+                                placeholder="Debat, Karya Ilmia, Dll ..."><?php echo $user['prestasi'] ?></textarea>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Prestasi</label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-book"
+                                        aria-hidden="true"></i></span>
+                                <select name="prestasi" class="form-control select2" multiple="multiple"
+                                    data-placeholder="Select a Performance" style="width: 100%;">
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="img">Profile</label>
 
                             <input type="file" class="form-control" id="img" name="img" accept="image/*"
                                 value="<?= set_value('img') ?>">
-
+                            <small>Masukkan File Foto Profile Max Size 3 MB</small>
 
                         </div>
                     </div>
+                </div>
+                <div class="row">
+
 
                     <div class="col-md-6">
-                        <label for="Nama">Gambar </label>
+                        <label for="Nama">Profile </label>
                         <div class="input-group">
                             <?php echo form_hidden('new_img', $user['img']) ?>
                             <a class="thumbnail">
@@ -223,13 +252,16 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
             <div class="box-footer">
                 <input type="submit" class="btn btn-primary" value="Update" name="submit" />
                 <input value="Back" class="btn btn-primary" onclick="history.back(-1)" type="Button" value="Back ">
 
 
             </div>
+
         </form>
 
 
@@ -245,10 +277,13 @@
 
 <script>
 $(function() {
+    //Initialize Select2 Elements
+    // $('.select2').select2()
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', {
         'placeholder': 'dd/mm/yyyy'
     })
+
 
 });
 </script>

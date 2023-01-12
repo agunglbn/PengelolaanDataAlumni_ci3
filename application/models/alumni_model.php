@@ -3,6 +3,26 @@
 class Alumni_model extends CI_Model
 {
     private $_table = "tbl_diskusi";
+
+
+    function countAlumnii()
+    {
+        return $this->db->count_all("tbl_alumni");
+    }
+    function countBeritaAlumnii()
+    {
+        $data = $this->session->userdata('id_alumni');
+        $this->db->where('tbl_diskusi.id_alumni', $data);
+        $this->db->where('status', '0');
+        return $this->db->count_all_results('tbl_diskusi', $data);
+
+        // $a = $this->db->query('SELECT * FROM tbl_diskusi WHERE status= "0",');
+        // $this->db->where('tbl_diskusi.id_alumni', $data);
+        // $count = $query->num_rows();
+        // return $count;
+    }
+
+
     function detailAlumni($id = null)
     {
         $query = $this->db->get_where('tbl_alumni', array('id_alumni' => $id))->row();
@@ -64,6 +84,7 @@ class Alumni_model extends CI_Model
         $query = $this->db->get_where('tbl_diskusi', array('id' => $id))->row();
         return $query;
     }
+
     function updateBeritaAlumni($where, $data, $table)
     {
         $this->db->where($where);

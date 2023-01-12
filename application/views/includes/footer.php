@@ -7,6 +7,7 @@
         reserved.
     </footer>
 
+    <!-- Sweet Aler2 -->
     <script src="<?= base_url(); ?>assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <!--DATA TABLE-->
     <script src="<?php echo base_url(); ?>assets/dataTables/datatables.min.js"></script>

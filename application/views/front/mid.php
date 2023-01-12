@@ -139,13 +139,16 @@
              <div class="section-title" data-aos="fade-up">
                  <h2>Berita Sekolah</h2>
                  <div class="row">
-                     <?php foreach ($berita as $row) : ?>
+
+                     <?php
+                        if (!empty($berita)) {
+                            foreach ($berita as $row) { ?>
                      <div class="col-md-4 mb-5 align-items-stretch" data-aos="fade-up">
                          <div class="card"
                              style="background-image: url('<?php echo base_url(); ?>assets/img-berita/<?php echo $row->img; ?>');">
                              <div class="card-body">
                                  <h5 class="card-title"><?php echo word_limiter($row->judul, 5, '....') ?></a></h5>
-                                 <p class="card-text"><?php echo word_limiter($row->isi, 15, '....') ?></p><br>
+                                 <p class="card-text"><?php echo word_limiter($row->isi, 5, '....') ?></p><br>
 
                                  <div class="container">
                                      <div class="row">
@@ -173,7 +176,8 @@
                              </div>
                          </div>
                      </div>
-                     <?php endforeach ?>
+                     <?php }
+                        } ?>
                  </div>
                  <a href="<?php echo base_url(); ?>BeritaSekolah" class="btn btn-outline-info">Tampilkan Semua
                      Berita</a>
@@ -593,7 +597,7 @@
                      <div class="contact-phone">
                          <i class="bi bi-phone"></i>
                          <h3>Phone Number</h3>
-                         <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                         <p><a href="tel:(0761) 562804">(0761) 562804</a></p>
                      </div>
                  </div>
 
@@ -655,8 +659,8 @@
                              Jl. Kartama, Maharatu,<br>
                              Kec. Marpoyan Damai, Kota Pekanbaru, Riau<br><br>
                              Riau 96010,<br><br>
-                             <strong>Phone:</strong> +1 5589 55488 55<br>
-                             <strong>Email:</strong> info@example.com<br>
+                             <strong>Phone:</strong>(0761) 562804<br>
+                             <strong>Email:</strong> smpnn25pekanbaru.sch.id<br>
                          </p>
                          <div class="social-links mt-3">
                              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -671,22 +675,28 @@
                  <div class="col-lg-2 col-md-6 footer-links">
                      <h4>Useful Links</h4>
                      <ul>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">NEWS</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                         <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+                         <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+                         <li><i class="bx bx-chevron-right"></i> <a href="#NEWS">NEWS</a></li>
+                         <li><i class="bx bx-chevron-right"></i> <a
+                                 href="<?php echo base_url(); ?>BeritaSekolah">Beriita Sekolah</a></li>
+                         <li><i class="bx bx-chevron-right"></i> <a href="<?php echo base_url(); ?>beritaAlumni">Berita
+                                 Alumni</a></li>
                      </ul>
                  </div>
 
                  <div class="col-lg-3 col-md-6 footer-links">
                      <h4>Our NEWS</h4>
                      <ul>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                         <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                         <?php
+                            if (!empty($berita)) {
+                                foreach ($berita as $row) { ?>
+
+
+                         <li><i class="bx bx-chevron-right"></i> <a
+                                 href="#"><?php echo word_limiter($row->judul, 5, '....') ?></a></li>
+                         <?php }
+                            } ?>
                      </ul>
                  </div>
 

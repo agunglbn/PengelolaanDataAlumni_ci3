@@ -8,49 +8,59 @@
     </section>
 
     <section class="content">
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>150</h3>
-                        <p>New Tasks</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <center>
+            <div class="row ">
+                <!-- <div class="col-lg-3 col-xs-6">
+                <!-- small box --
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>150</h3>
+                    <p>New Tasks</p>
                 </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
-                        <p>Completed Tasks</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
                 </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3>44</h3>
-                        <p>New User</p>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>./col -->
+
+                <!-- <div class="col-lg-3 col-xs-6 ">
+                    <!-- small box --
+
+                </div> -->
+
+                <div class="col-lg-5 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow ">
+                        <div class="inner">
+                            <h3><?php echo $alumni ?></h3>
+                            <p>Alumni</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="<?php echo base_url(); ?>userListing" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                </div><!-- ./col -->
+                <div class="col-lg-5 col-xs-6 ">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3><?php echo $diskusi ?><sup style="font-size: 20px"></sup></h3>
+                            <p>Waiting News Activation</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="listBeritaAlumni" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                    <a href="<?php echo base_url(); ?>userListing" class="small-box-footer">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
+
+                <!-- ./col -->
+                <!-- <div class="col-lg-3 col-xs-6">
+                <!-- small box --
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3>65</h3>
@@ -61,8 +71,9 @@
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </div><!-- ./col -->
-        </div>
+            </div>./col -->
+            </div>
+        </center>
     </section>
 
 

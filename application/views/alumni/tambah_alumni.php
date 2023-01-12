@@ -2,19 +2,56 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> User Alumni Management
+            <i class="fa fa-users"></i> User Management
             <small>Add / Edit User</small>
         </h1>
     </section>
 
     <section class="content">
+
         <div class="row">
             <!-- left column -->
             <div class="col-md-8">
                 <!-- general form elements -->
 
                 <div class="box box-primary">
-                    <div class="box-header">
+                    <div class="box-body">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                            Upload File
+                        </button>
+
+                        <div class="modal fade" id="modal-default">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Upload File Excel</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form method="POST" enctype="multipart/form-data"
+                                            action="<?php echo base_url() ?>User/import_excel">
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">File input</label>
+                                                <input type="file" accept=".xlsx" name="file" id="exampleInputFile">
+                                                <p class="help-block">Masukkan File Dalam Bentuk Excel.</p>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
                         <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
@@ -64,7 +101,7 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="status">Status</label>
-                                        <select class="form-control required" id="status" name="status">
+                                        <select class="form-control " id="status" name="status">
                                             <option value="0" disabled selected hidden>--Select Role--</option>
                                             <option value="1">Active</option>
                                             <option value="0">Non-Active</option>
@@ -81,7 +118,6 @@
                         </div>
 
                     </form>
-
                 </div>
             </div>
             <div class="col-md-4">
@@ -115,4 +151,4 @@
     </section>
 
 </div>
-<script src="<?php echo base_url(); ?>assets/js/addAlumni.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>

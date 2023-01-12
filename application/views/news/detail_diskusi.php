@@ -10,7 +10,8 @@
                             <div class="page-wrapper">
                                 <div class="blog-title-area text-center">
                                     <ol class="breadcrumb hidden-xs-down">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>front">Home</a>
+                                        </li>
                                         <li class="breadcrumb-item"><a href="#">Blog</a></li>
                                         <li class="breadcrumb-item active"><?= $detail['judul']; ?></li>
                                     </ol>
@@ -58,7 +59,7 @@
                                     </div><!-- end meta -->
 
                                     <div class="post-sharing">
-                                        <ul class="list-inline">
+                                        <!-- <ul class="list-inline">
                                             <li><a href="#" class="fb-button btn btn-primary"><i
                                                         class="fa fa-facebook"></i>
                                                     <span class="down-mobile">Share on Facebook</span></a></li>
@@ -67,7 +68,7 @@
                                                     <span class="down-mobile">Tweet on Twitter</span></a></li>
                                             <li><a href="#" class="gp-button btn btn-primary"><i
                                                         class="fa fa-google-plus"></i></a></li>
-                                        </ul>
+                                        </ul> -->
                                     </div><!-- end post-sharing -->
                                 </div><!-- end title -->
 
@@ -163,53 +164,9 @@
                                 <!--      </div>end row -->
                                 <!--  </div> end author-box -->
 
-                                <hr class="invis1">
 
-                                <div class="custombox clearfix">
-                                    <h4 class="small-title">You may also like</h4>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="blog-box">
-                                                <div class="post-media">
-                                                    <a href="tech-single.html" title="">
-                                                        <img src="upload/tech_menu_04.jpg" alt="" class="img-fluid">
-                                                        <div class="hovereffect">
-                                                            <span class=""></span>
-                                                        </div><!-- end hover -->
-                                                    </a>
-                                                </div><!-- end media -->
-                                                <div class="blog-meta">
-                                                    <h4><a href="tech-single.html" title="">We are guests of ABC Design
-                                                            Studio</a></h4>
-                                                    <small><a href="blog-category-01.html" title="">Trends</a></small>
-                                                    <small><a href="blog-category-01.html" title="">21 July,
-                                                            2017</a></small>
-                                                </div><!-- end meta -->
-                                            </div><!-- end blog-box -->
-                                        </div><!-- end col -->
 
-                                        <div class="col-lg-6">
-                                            <div class="blog-box">
-                                                <div class="post-media">
-                                                    <a href="tech-single.html" title="">
-                                                        <img src="upload/tech_menu_06.jpg" alt="" class="img-fluid">
-                                                        <div class="hovereffect">
-                                                            <span class=""></span>
-                                                        </div><!-- end hover -->
-                                                    </a>
-                                                </div><!-- end media -->
-                                                <div class="blog-meta">
-                                                    <h4><a href="tech-single.html" title="">Nostalgia at work with
-                                                            family</a>
-                                                    </h4>
-                                                    <small><a href="blog-category-01.html" title="">News</a></small>
-                                                    <small><a href="blog-category-01.html" title="">20 July,
-                                                            2017</a></small>
-                                                </div><!-- end meta -->
-                                            </div><!-- end blog-box -->
-                                        </div><!-- end col -->
-                                    </div><!-- end row -->
-                                </div><!-- end custom-box -->
+
 
                                 <hr class="invis1">
 
@@ -289,13 +246,13 @@
                                     <h4 class="small-title">Leave a Reply</h4>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form class="form-wrapper">
+                                            <!-- <form class="form-wrapper">
                                                 <input type="text" class="form-control" placeholder="Your name">
                                                 <input type="text" class="form-control" placeholder="Email address">
                                                 <input type="text" class="form-control" placeholder="Website">
                                                 <textarea class="form-control" placeholder="Your comment"></textarea>
                                                 <button type="submit" class="btn btn-primary">Submit Comment</button>
-                                            </form>
+                                            </form> -->
                                         </div>
                                     </div>
                                 </div>
@@ -377,7 +334,9 @@
                                     <h2 class="widget-title">School News Post </h2>
                                     <div class="blog-list-widget">
                                         <div class="list-group">
-                                            <?php foreach ($sekolah as $row) : ?>
+                                            <?php
+                                            if (!empty($sekolah)) {
+                                                foreach ($sekolah as $row) { ?>
                                             <a href="<?php echo base_url() . 'DetailBeritaSekolah/' . $row->id; ?>"
                                                 class="list-group-item list-group-item-action flex-column align-items-start">
                                                 <div class="w-100 justify-content-between">
@@ -388,7 +347,8 @@
                                                     <small><?php echo $row->created ?></small>
                                                 </div>
                                             </a>
-                                            <?php endforeach ?>
+                                            <?php }
+                                            } ?>
                                         </div>
                                     </div><!-- end blog-list -->
                                 </div><!-- end widget -->

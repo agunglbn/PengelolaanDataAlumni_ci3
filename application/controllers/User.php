@@ -331,6 +331,9 @@ class User extends BaseController
     }
     // END DATA USER
 
+
+
+
     /**
      * Data Alumni
      */
@@ -345,7 +348,6 @@ class User extends BaseController
     {
 
         $this->load->model('user_model');
-        $data['roles'] = $this->user_model->getUserRoles();
         $data['x'] = $this->user_model->get_alumni()->result();
         $this->global['pageTitle'] = 'CodeInsect : Add New Alumni';
 
@@ -367,6 +369,15 @@ class User extends BaseController
         $this->load->library('form_validation');
         $this->load->helper(array('form', 'url'));
         $this->form_validation->set_rules(
+            'nisn',
+            'NISN',
+            'required|min_length[3]|max_length[15]|is_unique[tbl_alumni.nisn]',
+            array(
+                'required'      => 'You have not provided %s.',
+                'is_unique'     => '%s ini telah digunakan.'
+            )
+        );
+        $this->form_validation->set_rules(
             'username',
             'Username',
             'required|min_length[3]|max_length[15]|is_unique[tbl_alumni.username]',
@@ -377,7 +388,7 @@ class User extends BaseController
         );
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password ', 'required|trim|min_length[3]|matches[password]');
-        $this->form_validation->set_rules('status', 'Status', 'trim|required');
+
 
         if ($this->form_validation->run() == false) {
 
@@ -386,14 +397,11 @@ class User extends BaseController
             if ($this->input->post('submit')) {
                 //Check whether user upload picture
 
-
-
                 //Prepare array of user data
                 $data = array(
                     'nisn' => $this->input->post('nisn'),
                     'username' => $this->input->post('username'),
                     'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                    'status' => $this->input->post('status'),
                     'img' => 'default.jpg'
                 );
 
@@ -412,7 +420,93 @@ class User extends BaseController
             redirect('alumni');
         }
     }
+    // Upload Tambah Data Alumni Dengan Excel 
 
+    // public function tes()
+    // {
+    //     $this->load->view("tes");
+    // }
+
+    public function import_excel()
+    {
+
+        // $this->load->model("user_model");
+        $this->load->library("excel");
+        $this->form_validation->set_rules('file', 'File', 'callback_callback');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('tambah_alumni');
+        } else {
+            $tmp_name = $_FILES["file"]["tmp_name"];
+            $excel = PHPExcel_IOFactory::load($tmp_name);
+
+            foreach ($excel->getWorksheetIterator() as $value) {
+
+                $row = $value->getHighestRow();
+                $colom = $value->getHighestColumn();
+                for ($i = 6; $i <= $row; $i++) {
+                    $nisn = $value->getCellByColumnAndRow(0, $i)->getValue();
+                    $username = $value->getCellByColumnAndRow(1, $i)->getValue();
+                    $password = $value->getCellByColumnAndRow(2, $i)->getValue();
+                    $data[] = [
+                        "nisn"    => $nisn,
+                        "username"    => $username,
+                        "password"    => password_hash($password, PASSWORD_DEFAULT),
+                        "img" => 'default.jpg',
+                        "created" => date("Y-M-d H:i:s"),
+                    ];
+                }
+            }
+            $insert = $this->user_model->fetch_data($data);
+            $this->session->set_flashdata('success_msg', '<span class="glyphicon glyphicon-ok"></span> Data Berhasil di Import ke Database');
+            redirect('alumni');
+        }
+    }
+    public function callback()
+    {
+        if (isset($_FILES["file"])) {
+            $allowed = ["xls", "xlsx"];
+
+            if (empty($_FILES["file"]["name"])) {
+                $this->form_validation->set_message('error_msg', ' Error, File Tidak DItemukan !!');
+                $this->session->set_flashdata('error_msg', ' Error, File Tidak DItemukan!!');
+                redirect('alumni');
+            } else if (!in_array(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION), $allowed)) {
+                $this->form_validation->set_message('error_msg', ' Error, Jenis File Tidak Sesuai !!');
+                $this->session->set_flashdata('error_msg', ' Error, Jenis File Tidak Sesuai!!');
+                redirect('alumni');
+            } else if ($_FILES["file"]["size"] > 1532300) {
+                $this->form_validation->set_message('error_msg', ' Error, Ukuran FIle Maksimal 1,5 MB !!');
+                $this->session->set_flashdata('error_msg', ' Error, Ukuran FIle Maksimal 1,5 MB!!');
+                redirect('alumni');
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public function cetakpdf($jenis = 'pdf')
+    {
+
+        if ($jenis == 'pdf') {
+            $data['detail'] = $this->user_model->get_alumni('tbl_alumni')->result();
+            $html = $this->load->view('alumni/laporan_pdf', $data, TRUE);
+            // echo $html;
+            generatePdf($html, 'Data Alumni SMPN 25 Pekanbaru', 'A4', 'landscape');
+        }
+        // $this->load->library('dompdf_gen');
+        // $data['detail'] = $this->user_model->get_alumni('tbl_alumni')->result();
+
+        // $this->load->view('alumni/laporan_pdf', $data);
+
+        // $paper_size = 'A4';
+        // $orientation = 'landscape';
+        // $html = $this->output->get_output();
+        // $this->dompdf->set_paper($paper_size, $orientation);
+
+        // $this->dompdf->load_html($html);
+        // $this->dompdf->render();
+        // $this->dompdf->stream("Data Alumni SMPN 25 Pekanbaru", array('Attachment' => 0));
+    }
 
     function deleteAlumni($id)
     {
@@ -462,9 +556,11 @@ class User extends BaseController
         redirect('alumni');
     }
 
+
+
     // END DATA ALUMNI
 
-    // LIST BERITA ALUMNI DAHSBORD ADMIN DAN USER
+    // LIST BERITA ALUMNI DAHSBORD ADMIN 
     public function BeritaAlumni()
     {
         $this->global['pageTitle'] = 'CodeInsect : List Berita Alumni';
@@ -490,6 +586,14 @@ class User extends BaseController
         $this->global['pageTitle'] = 'CodeInsect : Detail Berita Alumni';
         $data['detail'] = $this->user_model->detail_BeritaAlumni($id);
         $this->loadViews("alumni/detail_berita_alumni",  $this->global, $data, NULL);
+    }
+    function DeleteBeritaAlumni($id)
+    {
+
+        $query = $this->user_model->deleteBeritaAlumni($id);
+        $this->session->set_flashdata('success_msg', 'Sukses Mengahpus Berita !!');
+        //Form for delete data Berita
+        redirect('BeritaAlumni');
     }
 
     // KATEGORI BERITA ALUMNI
@@ -713,4 +817,21 @@ class User extends BaseController
         redirect('KategoriBeritaSekolah');
     }
     // END KATEGORI BERITA ALUMNI
+
+    // Data Guru SMPN 25 Pekanbaru
+
+    function guru()
+    {
+        $this->global['pageTitle'] = 'CodeInsect : Data Guru';
+        $data['guru'] = $this->user_model->getGuru()->result();
+        $this->loadViews("alumni/guru",  $this->global, $data, NULL);
+    }
+    function addNewguru()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nip', 'NIP', 'trim|required|max_length[15]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]');
+        $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai ', '');
+        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[15]');
+    }
 }

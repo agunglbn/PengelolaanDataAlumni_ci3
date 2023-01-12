@@ -12,6 +12,7 @@ class Alumni extends CI_Controller
     /**
      * This is default constructor of the class
      */
+
     public function __construct()
     {
         parent::__construct();
@@ -29,10 +30,13 @@ class Alumni extends CI_Controller
         $data['title'] = 'Dahsbord';
         $data['user'] = $this->db->get_where('tbl_alumni', ['username' =>
         $this->session->userdata('username')])->row_array();
+        $data['alumni'] = $this->alumni_model->countAlumnii();
+        $data['diskusi'] = $this->alumni_model->countBeritaAlumnii($data['user']);
         $this->load->view('dashbordAlum/header', $data);
         $this->load->view('dashbordAlum/mid');
         $this->load->view('dashbordAlum/footer');
     }
+
 
     /**function Loggin_()
     {
@@ -124,6 +128,7 @@ class Alumni extends CI_Controller
                         'tgl_lahir' => $this->input->post('tgllahir'),
                         'alamat' => $this->input->post('alamat'),
                         'modified' => date("Y-m-d H:i:s"),
+                        'prestasi' => $this->input->post('prestasi'),
                         'img' => $img['file_name']
 
                     ]);
@@ -163,13 +168,14 @@ class Alumni extends CI_Controller
                 'jenis_kelamin' => $this->input->post('jk'),
                 'tgl_lahir' => $this->input->post('tgllahir'),
                 'alamat' => $this->input->post('alamat'),
+                'prestasi' => $this->input->post('prestasi'),
                 'modified' => date("Y-m-d H:i:s"),
             );
 
             $this->db->where('id_alumni', $id);
             $this->db->update('tbl_alumni', $data);
             $this->session->set_flashdata('success_msg', 'Sukses Update Profil !!');
-            //Form for update berita
+            //Form for update profile
             redirect('profileAlumni');
         }
     }

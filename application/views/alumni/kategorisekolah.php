@@ -63,11 +63,6 @@
 
                                     <td width="150px">
 
-
-                                        <a class="btn btn-sm btn-info"
-                                            href="<?php echo base_url() . 'editBerita/' . $record->id; ?>"><i
-                                                class="fa fa-pencil"></i></a>
-
                                         <a class="btn btn-sm btn-danger" href="#modalDelete"
                                             onclick="$('#modalDelete #formDelete')
                                         .attr('action','<?php echo base_url() . 'deleteKategoriSekolah/' . $record->id; ?>')" data-toggle="modal"><i

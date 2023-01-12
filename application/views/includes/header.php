@@ -131,6 +131,13 @@
                         </a>
                     </li>
                     <li class="treeview">
+                    <li><a href="<?php echo base_url(); ?>alumni"> <i class="fa fa-user"></i> Data
+                            Alumni</a>
+                    </li>
+                    <li class="treeview">
+                    <li><a href="<?php echo base_url(); ?>guru"> <i class="fa fa-user"></i> Data Guru</a>
+                    </li>
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-book"></i> <span>Berita Alumni</span>
                             <span class="pull-right-container">
@@ -183,10 +190,7 @@
 
                         </ul>
                     </li>
-                    <li class="treeview">
-                    <li><a href="<?php echo base_url(); ?>alumni"> <i class="fa fa-user"></i> Data
-                            Alumni</a>
-                    </li>
+
                     <?php
                     if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
                     ?>
