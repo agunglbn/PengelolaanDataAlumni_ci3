@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInite07580c3239812eba590e8016fc357e7
 {
     public static $prefixLengthsPsr4 = array (
+        'c' => 
+        array (
+            'chriskacerguis\\RestServer\\' => 26,
+        ),
         'S' => 
         array (
             'Svg\\' => 4,
@@ -27,6 +31,10 @@ class ComposerStaticInite07580c3239812eba590e8016fc357e7
     );
 
     public static $prefixDirsPsr4 = array (
+        'chriskacerguis\\RestServer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chriskacerguis/codeigniter-restserver/src',
+        ),
         'Svg\\' => 
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',

@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "front";
 $route['404_override'] = 'error';
+$route['translate_uri_dashes'] = '';
+
 
 
 /*********** USER DEFINED ROUTES *******************/
